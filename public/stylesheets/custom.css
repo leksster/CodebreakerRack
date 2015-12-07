@@ -1,0 +1,12 @@
+.container {
+  width: 500px;
+}
+
+.results {
+  width: 43%;
+  text-align: left;
+}
+
+#inp {
+  width: 60px;
+}

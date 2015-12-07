@@ -1,0 +1,44 @@
+GIT
+  remote: https://github.com/leksster/Codebreaker.git
+  revision: a0e1778f84cf9ef3695cd52c11ef7db20f1ee202
+  specs:
+    Codebreaker (0.1.2)
+
+PATH
+  remote: .
+  specs:
+    CodebreakerWeb (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    diff-lcs (1.2.5)
+    rack (1.6.4)
+    rake (10.4.2)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
+    rspec-core (3.4.1)
+      rspec-support (~> 3.4.0)
+    rspec-expectations (3.4.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-mocks (3.4.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-support (3.4.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  Codebreaker!
+  CodebreakerWeb!
+  bundler (~> 1.10)
+  rack
+  rake (~> 10.0)
+  rspec
+
+BUNDLED WITH
+   1.10.6

@@ -10,13 +10,44 @@
 <body>
   <div class="container">
     <div class="text-center">
-      <h1><%= guess %></h1>
-      <p>Enter a guess</p>
-      <form method="post" action="/guess">
-        <input name="guess" type="text">
-        <input type="submit" name="submit" value="Go!">
-      </form>
+      <div class="results center-block">
+        <h1>
+          Break me!
+        </h1>
+        <h3>
+          <% attempts.each do |k, v| %>
+          <%= k.join %> : <%= v.join %>
+          <br>
+          <% end %>
+        </h3>
+      </div>
+      
+      <h3>
+        <% if session.lose? %>
+          <p>Game over.</p>
+          <form method="post" action="/start">
+            <input type="submit" name="submit" value="restart!" autofocus>
+          </form>
+      </h3>
+      <h3>
+        <% elsif session.win? %>
+          <p>You win!</p>
+          <form method="post" action="/start">
+            <input type="submit" name="submit" value="restart!" autofocus>
+          </form>
+      </h3>
+      <h3>
+        <% else %>
+        <form name="main" method="post" action="/guess" onsubmit="return validate()" method="post">
+          <input id="inp" name="guess" type="text" autofocus>
+          <input type="submit" name="submit" value="Go!">
+        </form>
+      </h3>
+        <% end %>
+
+      <p><%= session.instance_variable_get(:@code) %></p>
     </div>
   </div>
+<script src="/js/validation.js"></script>
 </body>
 </html>
