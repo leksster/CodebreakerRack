@@ -13,9 +13,8 @@ class Racker
 
   def response
     case @request.path
-    when "/" then Rack::Response.new(render("index.html.erb")) do |response|
-      session || "Break me!"
-    end
+    when "/" then Rack::Response.new(render("index.html.erb"))
+    when "/game" then Rack::Response.new(render("game.html.erb"))
     when "/guess" then logic
     when "/start" then start
     when "/hint" then hint_count
@@ -31,23 +30,19 @@ class Racker
   def start
     @request.session[:game] = Codebreaker::Model.new
     Rack::Response.new do |response|
-      response.redirect("/")
+      response.redirect("/game")
     end
   end
 
   def logic
     Rack::Response.new do |response|
       response.set_cookie("result", session.submit(@request.params["guess"]).join)
-      response.redirect("/")
+      response.redirect("/game")
     end
   end
 
   def attempts
     session.instance_variable_get(:@guesses)
-  end
-
-  def guess
-    @request.cookies["result"] || "Break me!"
   end
 
   def session

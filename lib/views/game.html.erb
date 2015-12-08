@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Codebreaker</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/stylesheets/custom.css" type="text/css">
+</head>
+<body>
+  <div class="container">
+    <div class="text-center">
+      <div class="results center-block">
+        <h3 class="text-center">
+          You have 10 attempts
+        </h3>
+        <h3>
+          <% attempts.each do |k, v| %>
+          <%= k.join %> : <%= v.join %>
+          <br>
+          <% end %>
+        </h3>
+      </div>
+      
+      <h3>
+        <% if session.lose? %>
+          <p>Game over. The code was: <%= session.instance_variable_get(:@code) %></p>
+          <form method="post" action="/start">
+            <input type="submit" name="submit" value="restart!" autofocus>
+          </form>
+      </h3>
+      <h3>
+        <% elsif session.win? %>
+          <p>You win! The code was: <%= session.instance_variable_get(:@code) %></p>
+          <form method="post" action="/start">
+            <input type="submit" name="submit" value="restart!" autofocus>
+          </form>
+      </h3>
+      <h3>
+        <% else %>
+        <form name="main" method="post" action="/guess" onsubmit="return validate()" method="post">
+          <input id="inp" name="guess" type="text" autofocus>
+          <input type="submit" name="submit" value="Go!">
+        </form>
+      </h3>
+        <% end %>
+    </div>
+  </div>
+<script src="/js/validation.js"></script>
+</body>
+</html>

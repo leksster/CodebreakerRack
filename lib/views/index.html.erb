@@ -2,50 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Codebreaker</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap-theme.min.css">
   <link rel="stylesheet" href="/stylesheets/custom.css" type="text/css">
 </head>
 <body>
   <div class="container">
-    <div class="text-center">
-      <div class="results center-block">
-        <h1>
-          Break me!
-        </h1>
-        <h3>
-          <% attempts.each do |k, v| %>
-          <%= k.join %> : <%= v.join %>
-          <br>
-          <% end %>
-        </h3>
-      </div>
-      
-      <h3>
-        <% if session.lose? %>
-          <p>Game over.</p>
-          <form method="post" action="/start">
-            <input type="submit" name="submit" value="restart!" autofocus>
-          </form>
-      </h3>
-      <h3>
-        <% elsif session.win? %>
-          <p>You win!</p>
-          <form method="post" action="/start">
-            <input type="submit" name="submit" value="restart!" autofocus>
-          </form>
-      </h3>
-      <h3>
-        <% else %>
-        <form name="main" method="post" action="/guess" onsubmit="return validate()" method="post">
-          <input id="inp" name="guess" type="text" autofocus>
-          <input type="submit" name="submit" value="Go!">
+    <div>   
+    <p>
+      Codebreaker is a logic game in which a code-breaker tries to break a secret code created by a code-maker. The code-maker, which will be played by the application we’re going to write, creates a secret code of four numbers between 1 and 6.<br><br>
+
+      The code-breaker then gets some number of chances to break the code. In each turn, the code-breaker makes a guess of four numbers. The code-maker then marks the guess with up to four + and - signs.<br><br>
+
+      A + indicates an exact match: one of the numbers in the guess is the same as one of the numbers in the secret code and in the same position.<br><br>
+
+      A - indicates a number match: one of the numbers in the guess is the same as one of the numbers in the secret code but in a different position.<br><br>
+    </p>   
+      <h3 class="text-center">
+        <form name="main" method="post" action="/start">
+          <input type="submit" name="submit" value="Break the code!">
         </form>
       </h3>
-        <% end %>
-
-      <p><%= session.instance_variable_get(:@code) %></p>
     </div>
   </div>
 <script src="/js/validation.js"></script>
