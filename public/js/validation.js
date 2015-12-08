@@ -13,4 +13,5 @@ function validate() {
     alert("4 digits required");
     return false;
   };
+
 }

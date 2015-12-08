@@ -10,39 +10,52 @@
 <body>
   <div class="container">
     <div class="text-center">
-      <div class="results center-block">
+      <div class="alert alert-info results center-block">
         <h3 class="text-center">
           You have 10 attempts
         </h3>
-        <h3>
-          <% attempts.each do |k, v| %>
-          <%= k.join %> : <%= v.join %>
-          <br>
+        <table class="table table-hover">
+
+            <% attempts.each do |k, v| %>
+            <tr class="info">
+              <td><h5><%= k.join %></h5></td>
+              <td><h5><%= v.join %></h5></td>
+            </tr>
           <% end %>
-        </h3>
+        </table>
       </div>
+
+      <h4>
+        <%= show_hint %>
+      </h4>
       
       <h3>
         <% if session.lose? %>
-          <p>Game over. The code was: <%= session.instance_variable_get(:@code) %></p>
+          <p class="alert alert-danger">Game over. The code was: <%= session.instance_variable_get(:@code) %></p>
           <form method="post" action="/start">
-            <input type="submit" name="submit" value="restart!" autofocus>
+            <input class="btn btn-warning" type="submit" name="submit" value="restart!" autofocus>
           </form>
       </h3>
       <h3>
         <% elsif session.win? %>
-          <p>You win! The code was: <%= session.instance_variable_get(:@code) %></p>
+          <p class="alert alert-success">You win! The code was: <%= session.instance_variable_get(:@code) %></p>
           <form method="post" action="/start">
-            <input type="submit" name="submit" value="restart!" autofocus>
+            <input class="btn btn-warning" type="submit" name="submit" value="restart!" autofocus>
           </form>
       </h3>
       <h3>
         <% else %>
-        <form name="main" method="post" action="/guess" onsubmit="return validate()" method="post">
-          <input id="inp" name="guess" type="text" autofocus>
-          <input type="submit" name="submit" value="Go!">
+        <form class="form" action="/hint">
+          <input class="btn btn-info toggle" name="hint" type="submit" value="hint" onClick="hideme">
+        </form>
+        <form class="form" name="main" method="post" action="/guess" onsubmit="return validate()" method="post">
+          <input class="inp form-control form" name="guess" type="text" autofocus>
+          <input class="btn btn-success" type="submit" name="submit" value="Go!">
         </form>
       </h3>
+      <form class="restart" action="/start">
+        <input class="btn btn-warning" type="submit" value="restart">
+      </form>
         <% end %>
     </div>
   </div>

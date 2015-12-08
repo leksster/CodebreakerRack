@@ -1,3 +1,7 @@
+body {
+  background: url(../img/bg.jpg) no-repeat center center fixed;
+}
+
 .container {
   width: 500px;
 }
@@ -7,6 +11,14 @@
   text-align: left;
 }
 
-#inp {
+.form {
+  display: inline-block;
+}
+
+.inp {
   width: 60px;
+}
+
+.restart {
+  margin-top: 10px;
 }
